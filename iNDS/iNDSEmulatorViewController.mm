@@ -894,6 +894,13 @@ NSInteger filter = [[NSUserDefaults standardUserDefaults] integerForKey:@"videoF
     
     UITextField *textField = [alert addTextField:@""];
     
+    //set the time to the save file name
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyyMMdd-HHmmss";
+    NSString *timeString = [dateFormatter stringFromDate:currentDate];
+    textField.text = timeString;
+    
     [alert addButton:@"Save" actionBlock:^(void) {
         [self saveStateWithName:textField.text];
         [self toggleSettings:self];
